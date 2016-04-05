@@ -12,7 +12,7 @@ shinyServer(function(input, output, session) {
   load("GIS/vegmap.Rdata")
   
   #colors for vegtypes
-  factpal <- colorFactor(topo.colors(201), vegmap$VEGTYPEID)
+  factpal <- colorFactor(sample(rainbow(201),201), vegmap$VEGTYPEID)
   
   ## Make your initial map
   output$map <- renderLeaflet({

@@ -6,6 +6,7 @@ library(rgdal)
 library(markdown)
 library(readr)
 library(dplyr)
+library(ggmap)
 
 #do you want to run the app locally or on github?
 #options are: "git" or  "local"
