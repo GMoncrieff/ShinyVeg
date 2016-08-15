@@ -10,7 +10,7 @@ library(ggmap)
 
 #do you want to run the app locally or on github?
 #options are: "git" or  "local"
-runme <- "git"
+runme <- "local"
 
 
 #run shiny app
