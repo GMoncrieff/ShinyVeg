@@ -9,7 +9,7 @@ library(markdown)
 ui <- shinyUI(navbarPage("VegMapEx",
                          tabPanel("Instructions",
                                   fluidRow(
-                                    column(9,includeMarkdown("/Users/glennmoncrieff/Documents/Projects/shiny_veg/instructions.md")),
+                                    column(9,includeMarkdown("/Users/glennmoncrieff/Documents/ShinyVeg/instructions.md")),
                                     column(3,imageOutput("saeon")))
                                   ),
                          tabPanel("Map",
@@ -56,8 +56,9 @@ server <- shinyServer(function(input, output, session) {
   
   #load vegmap
   #vegmap<-readOGR(dsn="/Users/glennmoncrieff/Documents/GIS/Vegmap2009",layer="vegm2009")
+  vegmap<-readOGR(dsn="/Users/glennmoncrieff//Documents/ShinyVeg/GIS",layer="vegmap_small")
   
-  load("GIS/vegmap_small.Rdata")
+
   factpal <- colorFactor(topo.colors(201), vegmap$VEGTYPEID)
   
   ## Make your initial map

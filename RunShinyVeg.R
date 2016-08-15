@@ -10,7 +10,7 @@ library(ggmap)
 
 #do you want to run the app locally or on github?
 #options are: "git" or  "local"
-runme <- "local"
+runme <- "git"
 
 
 #run shiny app
@@ -32,7 +32,7 @@ if(runme=="local") {
 
 } else if (runme == "git") {
   
-    runGitHub("ShinyVeg", "GMoncrieff")
+    runGitHub("ShinyVeg", "GMoncrieff",destdir="/Users/glennmoncrieff/Documents/ShinyGit/")
   
 } else {
   
