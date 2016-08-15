@@ -32,7 +32,7 @@ if(runme=="local") {
 
 } else if (runme == "git") {
   
-    runGitHub("ShinyVeg", "GMoncrieff",destdir="/Users/glennmoncrieff/Documents/ShinyGit/")
+    runGitHub("ShinyVeg", "GMoncrieff")
   
 } else {
   
