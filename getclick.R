@@ -56,7 +56,8 @@ server <- shinyServer(function(input, output, session) {
   
   #load vegmap
   #vegmap<-readOGR(dsn="/Users/glennmoncrieff/Documents/GIS/Vegmap2009",layer="vegm2009")
-  vegmap<-readOGR(dsn="/Users/glennmoncrieff/Documents/GIS/shinyveg/test",layer="veglow")
+  
+  load("GIS/vegmap_small.Rdata")
   factpal <- colorFactor(topo.colors(201), vegmap$VEGTYPEID)
   
   ## Make your initial map

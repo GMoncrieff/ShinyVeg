@@ -6,10 +6,8 @@ shinyServer(function(input, output, session) {
   values$circs <- data.frame(latitude = numeric(0), longitude = numeric(0))
   
   #load vegmap from file
-  #vegmap<-readOGR(dsn="GIS/Vegmap2009",layer="vegm2009")
+  vegmap<-readOGR(dsn="GIS",layer="vegmap_small")
   
-  #load vegmap from Rdata - quicker
-  load("GIS/vegmap.Rdata")
   
   #colors for vegtypes
   factpal <- colorFactor(sample(rainbow(201),201), vegmap$VEGTYPEID)

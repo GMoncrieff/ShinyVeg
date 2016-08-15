@@ -14,7 +14,7 @@ runme <- "git"
 
 
 #run shiny app
-if(runme="local") {
+if(runme=="local") {
 
     #set working dir
     Sys.getenv()
