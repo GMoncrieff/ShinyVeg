@@ -1,6 +1,6 @@
 shinyServer(function(input, output, session) {
   
-  #create table fro clickpoints
+  #create table for clickpoints
   #initial click ID
   values <- reactiveValues()
   values$circs <- data.frame(latitude = numeric(0), longitude = numeric(0))
@@ -12,22 +12,19 @@ shinyServer(function(input, output, session) {
   #colors for vegtypes
   factpal <- colorFactor(sample(rainbow(201),201), vegmap$VEGTYPEID)
   
-  ## Make your initial map
-  output$map <- renderLeaflet({
-    mymap<- leaflet() %>%
-      setView(lng = 18.4239, lat = -34, zoom = 11) %>%
-      addTiles(options = providerTileOptions(noWrap = TRUE))  %>%
-      hideGroup("show vegetation") %>% 
-      addPolygons(data=vegmap,
-                  stroke = FALSE, fillOpacity = 0.5, smoothFactor = 0.5,
-                  color = ~factpal(VEGTYPEID),group="show vegetation") %>%
-      # addPolygons(data=polygon_,
-      #            stroke = FALSE, fillOpacity = 0.5, smoothFactor = 0.5,
-      #            color = "blue",group="draw polygon") %>%
-      addLayersControl(overlayGroups = c("show vegetation","draw polygon"),
-                       options = layersControlOptions(collapsed = FALSE)) 
-    
-  })
+  #create initial leaflet widget
+  mymap<- leaflet() %>%
+    setView(lng = 18.4239, lat = -34, zoom = 11) %>%
+    addTiles(options = providerTileOptions(noWrap = TRUE))  %>%
+    hideGroup("show vegetation") %>% 
+    addPolygons(data=vegmap,
+                stroke = FALSE, fillOpacity = 0.5, smoothFactor = 0.5,
+                color = ~factpal(VEGTYPEID),group="show vegetation") %>%
+    addLayersControl(overlayGroups = c("show vegetation","draw polygon"),
+                     options = layersControlOptions(collapsed = FALSE)) 
+  
+  ## render for Shiny
+  output$map <- renderLeaflet(mymap)
   
   #get status of click check
   clickplot <- reactive({
@@ -36,8 +33,7 @@ shinyServer(function(input, output, session) {
   
   ## Observe mouse clicks and add circles
   observeEvent(input$map_click, {
-    if(clickplot()){
-      ## Get the click info like had been doing
+    if(clickplot()) {  # if toggle button status is true
       
       click <- input$map_click
       clat <- click$lat
